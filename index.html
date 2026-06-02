@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>iTafakkur — Your Daily Quran Companion</title>
-  <meta name="description" content="iTafakkur is a thoughtfully designed Islamic companion app for prayer times, Quran study, daily reflection, dhikr, and the 99 Names of Allah. Coming soon to iOS and Android.">
+  <meta name="description" content="iTafakkur is a thoughtfully designed Islamic companion app for prayer times, Quran study, daily reflection, dhikr, and the 99 Names of Allah. Available now on iOS and Android. Free.">
   <meta name="theme-color" content="#000000">
 
   <!-- Open Graph / social sharing -->
   <meta property="og:title" content="iTafakkur — Your Daily Quran Companion">
-  <meta property="og:description" content="Prayer. Reflection. Guidance. Coming soon to iOS and Android.">
+  <meta property="og:description" content="Prayer. Reflection. Guidance. Available now on iOS and Android. Free.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://itafakkur.com">
 
@@ -196,6 +196,9 @@
       margin-top: 20px; flex-wrap: wrap;
     }
     .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
       padding: 12px 22px;
       background: rgba(250, 247, 240, 0.04);
       border: 1px solid rgba(250, 247, 240, 0.15);
@@ -204,6 +207,30 @@
       font-size: 13px;
       font-weight: 500;
       cursor: not-allowed;
+      text-decoration: none;
+    }
+    /* Live store buttons after launch — copper accent signals "available",
+       matches the brand's Copper Spark color used across the app. */
+    .store-badge--live {
+      background: linear-gradient(180deg, var(--copper) 0%, #A05826 100%);
+      border: 1px solid var(--copper-light);
+      color: var(--cream);
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+    }
+    .store-badge--live:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+      box-shadow: 0 4px 14px rgba(212, 137, 79, 0.32);
+    }
+    .store-badge--live:active {
+      transform: translateY(0);
+      filter: brightness(0.96);
+    }
+    .store-badge--live svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
     }
     .contact {
       margin-bottom: 48px;
@@ -298,12 +325,34 @@
     </div>
 
     <div class="coming-soon">
-      <span class="coming-soon-label">Launching Soon</span>
-      <h2>Coming to iOS and Android</h2>
-      <p>iTafakkur is in final review. Sign up for the launch announcement by emailing us below.</p>
+      <span class="coming-soon-label">Available Now</span>
+      <h2>Now on iOS and Android</h2>
+      <p>iTafakkur is free, ad-light, and built with care for the global Muslim ummah. Tap a button to install.</p>
       <div class="stores">
-        <span class="store-badge">App Store · soon</span>
-        <span class="store-badge">Google Play · soon</span>
+        <a
+          class="store-badge store-badge--live"
+          href="https://apps.apple.com/app/id6766188629"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Download iTafakkur on the App Store"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          Download on the App Store
+        </a>
+        <a
+          class="store-badge store-badge--live"
+          href="https://play.google.com/store/apps/details?id=net.quranchat.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get iTafakkur on Google Play"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734c0-.39.22-.72.61-.92zm10.89 10.893 2.302 2.302-10.937 6.333 8.635-8.635zM21 12.001a1.25 1.25 0 0 1-.6 1.05l-2.991 1.736-2.561-2.787 2.562-2.786 2.99 1.737c.379.21.6.59.6 1.05zm-15.039-9.85 10.937 6.333-2.302 2.302L5.96 2.149z"/>
+          </svg>
+          Get it on Google Play
+        </a>
       </div>
     </div>
 
