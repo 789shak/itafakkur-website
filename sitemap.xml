@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap for itafakkur.com.
+  Submitted to Google Search Console + Bing Webmaster Tools.
+  Update <lastmod> whenever a page's content changes meaningfully.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://itafakkur.com/</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://itafakkur.com/privacy.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://itafakkur.com/support.html</loc>
+    <lastmod>2026-06-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+</urlset>

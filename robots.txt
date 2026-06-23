@@ -1,0 +1,9 @@
+# robots.txt for itafakkur.com
+# Allow every crawler to index every page.
+# Sitemap line below tells Googlebot / Bingbot where the map lives —
+# faster discovery than relying on manual submission alone.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://itafakkur.com/sitemap.xml
