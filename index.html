@@ -1,459 +1,1619 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iTafakkur — Your Daily Quran Companion</title>
-  <meta name="description" content="iTafakkur is a thoughtfully designed Islamic companion app for prayer times, Quran study, daily reflection, dhikr, and the 99 Names of Allah. Available now on iOS and Android. Free.">
-  <meta name="theme-color" content="#000000">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="description" content="iTafakkur — a serene, premium Islamic companion for prayer times, Quran, dhikr, and reflection. Ad-free, private, and available on iPhone and Android." />
+  <title>iTafakkur — A Serene Islamic Companion</title>
 
-  <!-- Open Graph / social sharing.
-       Card image is 1200×630 (standard OG size, accepted by every platform).
-       Verify rendering at https://www.opengraph.xyz/ after deploy. -->
-  <meta property="og:title" content="iTafakkur — Your Daily Quran Companion">
-  <meta property="og:description" content="Prayer. Reflection. Guidance. Available now on iOS and Android. Free.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://itafakkur.com">
-  <meta property="og:image" content="https://itafakkur.com/og-image.png">
-  <meta property="og:image:secure_url" content="https://itafakkur.com/og-image.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="iTafakkur app — Quran, prayer times, and reflective guidance. Ad-free, forever.">
-  <meta property="og:site_name" content="iTafakkur">
-  <meta property="og:locale" content="en_US">
+  <!-- Favicon (uses the same logo as the site) -->
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
 
-  <!-- Twitter / X uses its own meta-prefix; "summary_large_image" shows the big card. -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="iTafakkur — Your Daily Quran Companion">
-  <meta name="twitter:description" content="Prayer. Reflection. Guidance. Available now on iOS and Android. Free.">
-  <meta name="twitter:image" content="https://itafakkur.com/og-image.png">
-  <meta name="twitter:image:alt" content="iTafakkur app — Quran, prayer times, and reflective guidance. Ad-free, forever.">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://itafakkur.com/" />
 
-  <!-- Favicon: actual app icon (96x96 with logo on black, rounded) -->
-  <link rel="icon" type="image/png" href="logo.png">
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp, iMessage) -->
+  <meta property="og:title" content="iTafakkur — A Serene Islamic Companion" />
+  <meta property="og:description" content="Prayer times, Quran, dhikr, and reflection — beautifully unified. Ad-free, forever. On iPhone and Android." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://itafakkur.com/" />
+  <meta property="og:image" content="https://itafakkur.com/og-image.png" />
+  <meta property="og:image:secure_url" content="https://itafakkur.com/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="iTafakkur — Islamic companion for prayer, Quran, and reflection." />
+  <meta property="og:site_name" content="iTafakkur" />
+  <meta property="og:locale" content="en_US" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iTafakkur — A Serene Islamic Companion" />
+  <meta name="twitter:description" content="Prayer times, Quran, dhikr, and reflection — beautifully unified. Ad-free, forever." />
+  <meta name="twitter:image" content="https://itafakkur.com/og-image.png" />
+  <meta name="twitter:image:alt" content="iTafakkur — Islamic companion for prayer, Quran, and reflection." />
+
+  <!-- Preconnect for faster font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Inter (English UI) · Fraunces (English serif accents) · Amiri (Arabic Quran) · Cairo (Arabic UI) -->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Amiri:wght@400;700&family=Cairo:wght@500;700&display=swap"
+  />
 
   <style>
+    /* ---------- Design tokens ---------- */
     :root {
-      --black: #000000;
-      --forest: #0F3D2E;
-      --copper: #B8662F;
-      --copper-light: #D4894F;
-      --cream: #FAF7F0;
-      --soft: #E8DFC9;
-      --gold: #D4AF37;
+      --white: #ffffff;
+      --paper: #faf9f6;      /* warm off-white for section separation */
+      --mist:  #f2f0eb;      /* subtle gray for cards */
+      --line:  #e6e3dc;      /* hairline dividers */
+      --ink:   #14110c;      /* off-black text */
+      --ink-2: #3d3a33;      /* secondary text */
+      --ink-3: #7a766c;      /* tertiary */
+
+      --gold-1: #c9a961;     /* metallic gold base */
+      --gold-2: #a98747;     /* deeper gold */
+      --gold-3: #efdcaa;     /* pale gold wash */
+      --gold-grad: linear-gradient(135deg, #d4b56b 0%, #a98747 60%, #8a6b34 100%);
+
+      --shadow-sm: 0 1px 2px rgba(20, 17, 12, 0.04), 0 1px 3px rgba(20, 17, 12, 0.06);
+      --shadow-md: 0 4px 12px rgba(20, 17, 12, 0.06), 0 2px 4px rgba(20, 17, 12, 0.04);
+      --shadow-lg: 0 12px 32px rgba(20, 17, 12, 0.08), 0 6px 12px rgba(20, 17, 12, 0.05);
+
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+
+      /* Fluid type scale */
+      --fs-xs: 12px;
+      --fs-sm: 14px;
+      --fs-md: 16px;
+      --fs-lg: clamp(17px, 1.6vw + 12px, 19px);
+      --fs-xl: clamp(20px, 2vw + 14px, 24px);
+      --fs-2xl: clamp(28px, 4vw + 12px, 40px);
+      --fs-3xl: clamp(40px, 7vw + 12px, 72px);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    /* ---------- Reset & base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--black);
-      color: var(--cream);
-      min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: var(--fs-md);
       line-height: 1.6;
+      color: var(--ink);
+      background: var(--white);
+      position: relative;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
-    .ornament {
-      display: flex; align-items: center; justify-content: center;
-      gap: 14px; opacity: 0.5; margin: 0 auto;
+
+    /* ---------- Subtle Islamic geometric pattern layer ----------
+       Rub el Hizb (8-point star) tessellation drawn as inline SVG,
+       tiled 160×160, layered at 45% opacity behind all content.        */
+    .art-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.45;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g transform='translate(80 80)' fill='none' stroke='%23a98747' stroke-width='0.9'><rect x='-28' y='-28' width='56' height='56' stroke-opacity='0.55'/><rect x='-28' y='-28' width='56' height='56' transform='rotate(45)' stroke-opacity='0.55'/><circle r='6' stroke-opacity='0.55'/><circle r='42' stroke-opacity='0.22'/></g></svg>");
+      background-repeat: repeat;
+      background-size: 160px 160px;
     }
-    .ornament::before, .ornament::after {
-      content: ''; height: 1px; width: 80px;
-      background: var(--copper);
+    /* Ensure real content sits above the pattern layer */
+    header.nav, main, footer { position: relative; z-index: 1; }
+    img, svg { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Screen-reader-only helper */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
     }
-    .ornament-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--copper);
+
+    /* Focus states */
+    :focus-visible {
+      outline: 2px solid var(--gold-2);
+      outline-offset: 3px;
+      border-radius: 4px;
     }
-    .topnav {
+
+    /* ---------- Layout container ---------- */
+    .wrap {
       width: 100%;
-      padding: 16px 28px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+
+    /* ---------- Top navigation (sticky, mobile-first) ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: saturate(180%) blur(14px);
+      -webkit-backdrop-filter: saturate(180%) blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(232, 223, 201, 0.10);
-      position: sticky;
-      top: 0;
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 100;
+      height: 60px;
     }
-    .topnav-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--cream);
-      text-decoration: none;
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-    }
-    .topnav-brand img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-    }
-    .topnav-links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-    .topnav-links a {
-      color: var(--soft);
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 500;
-      opacity: 0.85;
-      transition: opacity 0.2s, color 0.2s;
-    }
-    .topnav-links a:hover {
-      opacity: 1;
-      color: var(--copper-light);
-    }
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 60px 24px 60px;
-      text-align: center;
-    }
-    .mark {
-      width: 200px; height: 200px;
-      margin: 32px auto 28px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .mark img {
-      width: 100%; height: 100%;
-      display: block;
-      object-fit: contain;
-    }
-    h1 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(48px, 8vw, 72px);
-      font-weight: 700;
-      letter-spacing: -1.5px;
-      margin-bottom: 12px;
-      color: var(--cream);
-    }
-    .tagline {
-      font-family: 'Fraunces', Georgia, serif;
-      font-style: italic;
-      font-size: clamp(18px, 3vw, 22px);
-      color: var(--copper-light);
-      margin-bottom: 40px;
-      letter-spacing: 0.3px;
-    }
-    .description {
-      font-size: 17px;
-      max-width: 560px;
-      margin: 0 auto 48px;
-      color: var(--soft);
-      opacity: 0.92;
-    }
-    .description strong {
-      color: var(--cream);
-      font-weight: 600;
-    }
-    .features {
-      display: flex; flex-wrap: wrap;
-      gap: 10px; justify-content: center;
-      margin-bottom: 56px;
-    }
-    .feature-pill {
-      display: inline-block;
-      padding: 9px 18px;
-      border: 1px solid rgba(184, 102, 47, 0.6);
-      background: rgba(184, 102, 47, 0.08);
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--cream);
-    }
-    .coming-soon {
-      background: rgba(212, 175, 55, 0.06);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 16px;
-      padding: 32px 24px;
-      max-width: 480px;
-      margin: 0 auto 56px;
-    }
-    .coming-soon-label {
-      display: inline-block;
-      padding: 4px 12px;
-      background: var(--gold);
-      color: var(--black);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      border-radius: 4px;
-      margin-bottom: 14px;
-    }
-    .coming-soon h2 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 22px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--cream);
-    }
-    .coming-soon p {
-      font-size: 14px;
-      color: var(--soft);
-      opacity: 0.85;
-    }
-    .stores {
-      display: flex; gap: 12px; justify-content: center;
-      margin-top: 20px; flex-wrap: wrap;
-    }
-    .store-badge {
+    .brand {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 12px 22px;
-      background: rgba(250, 247, 240, 0.04);
-      border: 1px solid rgba(250, 247, 240, 0.15);
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: block;
+      object-fit: contain;
+      background: transparent;
+    }
+    .brand-mark-lg {
+      width: 44px;
+      height: 44px;
+      border-radius: 11px;
+    }
+    .nav-links {
+      display: none;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--ink-2);
+      transition: color 160ms ease;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      min-height: 44px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--gold-grad);
+      color: var(--white);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      box-shadow: var(--shadow-sm);
+      transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); filter: brightness(1.05); }
+    .nav-cta:active { transform: translateY(0); filter: brightness(0.98); }
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      width: 44px; height: 44px;
+      background: transparent;
+      border: 1px solid var(--line);
       border-radius: 10px;
-      color: var(--soft);
-      font-size: 13px;
-      font-weight: 500;
-      cursor: not-allowed;
-      text-decoration: none;
+      color: var(--ink);
+      transition: background 160ms ease, border-color 160ms ease;
     }
-    /* Live store buttons after launch — copper accent signals "available",
-       matches the brand's Copper Spark color used across the app. */
-    .store-badge--live {
-      background: linear-gradient(180deg, var(--copper) 0%, #A05826 100%);
-      border: 1px solid var(--copper-light);
-      color: var(--cream);
-      cursor: pointer;
-      transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+    .nav-toggle:hover {
+      background: var(--paper);
+      border-color: rgba(201, 169, 97, 0.45);
+      color: var(--gold-2);
     }
-    .store-badge--live:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.06);
-      box-shadow: 0 4px 14px rgba(212, 137, 79, 0.32);
+    @media (min-width: 900px) {
+      .nav-links { display: inline-flex; }
     }
-    .store-badge--live:active {
-      transform: translateY(0);
-      filter: brightness(0.96);
+
+    /* Utility dropdown menu (opens under the hamburger, all screen sizes) */
+    .drawer {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 20px;
+      width: 260px;
+      max-width: calc(100vw - 32px);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: var(--shadow-lg);
+      padding: 8px 0;
+      z-index: 60;
+      overflow: hidden;
+      transform-origin: top right;
+      animation: menuIn 180ms ease;
     }
-    .store-badge--live svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
+    @media (min-width: 720px) { .drawer { right: 32px; } }
+    @keyframes menuIn {
+      from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0)  scale(1); }
     }
-    .contact {
-      margin-bottom: 48px;
-    }
-    .contact a {
-      color: var(--copper-light);
-      text-decoration: none;
-      font-weight: 500;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-    .contact a:hover {
-      border-bottom-color: var(--copper-light);
-    }
-    footer {
-      padding: 40px 24px;
-      text-align: center;
-      border-top: 1px solid rgba(232, 223, 201, 0.10);
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .footer-links {
-      display: flex; justify-content: center;
-      gap: 32px; flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-    .footer-links a {
-      color: var(--soft);
-      text-decoration: none;
+    .drawer.open { display: block; }
+    .drawer a {
+      display: block;
+      padding: 11px 20px;
       font-size: 14px;
       font-weight: 500;
-      opacity: 0.8;
-      transition: opacity 0.2s;
+      color: var(--ink);
+      transition: background 140ms ease, color 140ms ease;
     }
-    .footer-links a:hover { opacity: 1; }
-    .footer-meta {
-      font-size: 12px;
-      color: var(--soft);
-      opacity: 0.5;
+    .drawer a:hover { background: var(--paper); color: var(--gold-2); }
+    .drawer-label {
+      display: block;
+      padding: 10px 20px 4px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
     }
-    @media (max-width: 480px) {
-      .container { padding: 40px 20px 40px; }
-      .ornament::before, .ornament::after { width: 50px; }
-      .footer-links { gap: 20px; }
-      .mark { width: 160px; height: 160px; }
-      .topnav { padding: 14px 18px; }
-      .topnav-brand { font-size: 17px; }
-      .topnav-brand img { width: 30px; height: 30px; }
-      .topnav-links { gap: 16px; }
-      .topnav-links a { font-size: 14px; }
+    .drawer-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 6px 0;
     }
-  
-    .translators {
-      max-width: 480px;
-      margin: 0 auto 56px;
-      padding: 32px 24px;
-      background: rgba(15, 61, 46, 0.05);
-      border: 1px solid rgba(15, 61, 46, 0.25);
-      border-radius: 16px;
-      text-align: center;
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      padding: 48px 0 56px;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(201, 169, 97, 0.14), transparent 55%),
+        radial-gradient(circle at 100% 30%, rgba(201, 169, 97, 0.10), transparent 60%);
+      overflow: hidden;
     }
-    .translators h2 {
-      font-size: 22px;
-      margin: 0 0 6px;
-      color: var(--forest);
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold-1);
+      box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.22);
+    }
+    .hero h1 {
+      margin: 20px 0 12px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: var(--fs-3xl);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .hero h1 .accent {
+      background: var(--gold-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-ar {
+      font-family: 'Amiri', serif;
+      font-size: clamp(24px, 3.6vw + 8px, 36px);
+      line-height: 1.4;
+      color: var(--ink-2);
+      direction: rtl;
+      unicode-bidi: isolate;
+      margin: 8px 0 24px;
+      letter-spacing: 0;
+    }
+    .hero-desc {
+      font-size: var(--fs-lg);
+      color: var(--ink-2);
+      max-width: 620px;
+      margin: 0 0 32px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 52px;      /* mobile-first: comfortable thumb target */
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: var(--fs-md);
+      font-weight: 600;
+      letter-spacing: 0.005em;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, color 160ms ease, filter 160ms ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--gold-grad);
+      color: var(--white);
+      border: 1px solid transparent;
+      box-shadow: 0 6px 18px rgba(169, 135, 71, 0.28);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(169, 135, 71, 0.34); filter: brightness(1.04); }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-secondary:hover { border-color: var(--gold-2); color: var(--gold-2); transform: translateY(-1px); }
+
+    /* Trust row */
+    .trust {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-3);
+      font-size: var(--fs-sm);
+    }
+    .trust-item { display: inline-flex; align-items: center; gap: 8px; }
+    .trust-item svg { color: var(--gold-2); }
+
+    /* ---------- Showcase strip (3 boxes below trust row) ---------- */
+    .showcase {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 720px) {
+      .showcase { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    }
+    .show-card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px 22px 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+    .show-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(201, 169, 97, 0.45);
+    }
+    .show-head {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .show-icon {
+      width: 40px; height: 40px; border-radius: 11px;
+      background: linear-gradient(135deg, rgba(201, 169, 97, 0.18), rgba(201, 169, 97, 0.05));
+      color: var(--gold-2);
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+    .show-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 17px;
+      font-weight: 600;
       letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--ink);
     }
-    .translators-intro {
-      font-size: 13px;
-      color: rgba(15, 61, 46, 0.7);
-      margin: 0 0 20px;
-      line-height: 1.5;
+    .show-sub {
+      font-size: var(--fs-sm);
+      color: var(--ink-2);
+      line-height: 1.55;
+      margin-bottom: 16px;
     }
-    .translator-list {
+    /* ----- Prayer times mini list ----- */
+    .prayer-list {
       list-style: none;
       padding: 0;
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 6px;
     }
-    .translator-item {
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 8px;
-      font-size: 15px;
-      color: var(--black);
-      flex-wrap: wrap;
-    }
-    .translator-name {
-      font-weight: 600;
-    }
-    .translator-role {
-      color: rgba(0, 0, 0, 0.55);
+    .prayer-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 12px;
+      background: var(--paper);
+      border-radius: 8px;
       font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-2);
     }
-    @media (max-width: 480px) {
-      .translators { padding: 24px 18px; }
-      .translators h2 { font-size: 20px; }
+    .prayer-row.active {
+      background: linear-gradient(90deg, rgba(201, 169, 97, 0.16), rgba(201, 169, 97, 0.04));
+      color: var(--ink);
+      border: 1px solid rgba(201, 169, 97, 0.35);
+    }
+    .prayer-row .p-name { font-weight: 600; }
+    .prayer-row .p-time { font-variant-numeric: tabular-nums; }
+
+    /* ----- Full-month dual-date calendar ----- */
+    .cal-month-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2px 10px;
+    }
+    .cal-month-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+    .cal-month-title .h {
+      display: block;
+      font-family: 'Cairo', 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #1f7a3e;
+      margin-top: 1px;
+      letter-spacing: 0;
+    }
+    .cal-nav {
+      display: inline-flex; gap: 4px;
+    }
+    .cal-nav button {
+      width: 26px; height: 26px;
+      display: grid; place-items: center;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--ink-2);
+      transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+    }
+    .cal-nav button:hover { background: var(--white); color: var(--gold-2); border-color: rgba(201,169,97,0.4); }
+    .cal-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      padding: 0 2px 4px;
+    }
+    .cal-weekday {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--ink-3);
+      text-transform: uppercase;
+    }
+    .cal-month {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+    .cal-day {
+      aspect-ratio: 1 / 1.05;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2px 1px;
+      background: var(--paper);
+      border-radius: 5px;
+      font-size: 11px;
+      line-height: 1;
+    }
+    .cal-day .g { color: var(--ink); font-weight: 600; font-size: 11px; }
+    .cal-day .h { color: #1f7a3e; font-weight: 500; font-size: 9px; margin-top: 2px; }
+    .cal-day.dim { opacity: 0.35; }
+    .cal-day.today {
+      background: linear-gradient(135deg, rgba(201, 169, 97, 0.28), rgba(201, 169, 97, 0.10));
+      border: 1px solid rgba(201, 169, 97, 0.55);
+      box-shadow: 0 1px 3px rgba(201, 169, 97, 0.20);
+    }
+    .cal-legend {
+      display: flex; gap: 14px; margin-top: 10px;
+      font-size: 11px; color: var(--ink-3);
+    }
+    .cal-legend .swatch {
+      display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px;
+      vertical-align: middle;
+    }
+    .cal-legend .swatch.g { background: var(--ink); }
+    .cal-legend .swatch.h { background: #1f7a3e; }
+
+    /* ----- Daily wisdom (verse/hadith/reflection) ----- */
+    .wisdom-tabs {
+      display: flex; gap: 4px;
+      padding: 4px;
+      background: var(--paper);
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+    .wisdom-tab {
+      flex: 1;
+      padding: 6px 8px;
+      border: 0;
+      background: transparent;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      transition: all 160ms ease;
+    }
+    .wisdom-tab.active {
+      background: var(--white);
+      color: var(--gold-2);
+      box-shadow: var(--shadow-sm);
+    }
+    .wisdom-body {
+      padding: 12px 4px 0;
+    }
+    .wisdom-ar {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      unicode-bidi: isolate;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .wisdom-en {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--ink-2);
+      line-height: 1.5;
+    }
+    .wisdom-ref {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-2);
     }
 
+    /* ---------- Translators ---------- */
+    .translators-section {
+      padding: 72px 0 40px;
+    }
+    .translators-card {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 40px 32px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .translators-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 32px; right: 32px;
+      height: 3px;
+      background: var(--gold-grad);
+      border-radius: 3px;
+    }
+    .translators-eyebrow {
+      display: inline-block;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      margin-bottom: 10px;
+    }
+    .translators-heading {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(24px, 3vw + 10px, 32px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0 0 22px;
+    }
+    .translator-entry {
+      padding: 20px 20px;
+      background: var(--paper);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+    .translator-role {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 6px;
+    }
+    .translator-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .translators-dua {
+      max-width: 460px;
+      margin: 0 auto;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: var(--fs-lg);
+      line-height: 1.55;
+      color: var(--ink-2);
+    }
+    .translators-dua-ar {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      unicode-bidi: isolate;
+      font-style: normal;
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: var(--gold-2);
+    }
+
+    /* ---------- Quick action dashboard ---------- */
+    .dashboard {
+      padding: 20px 0 64px;
+    }
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    @media (min-width: 720px) {
+      .dashboard-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+    }
+    .qa {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 128px;
+      padding: 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      color: var(--ink);
+      text-align: left;
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
+    .qa:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(201, 169, 97, 0.5);
+    }
+    .qa-head {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .qa-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(201, 169, 97, 0.16), rgba(201, 169, 97, 0.06));
+      color: var(--gold-2);
+    }
+    .qa-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .qa-title {
+      margin-top: 14px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .qa-value {
+      margin-top: 4px;
+      font-size: 14px;
+      color: var(--ink-2);
+    }
+    .qa-value strong { color: var(--gold-2); font-weight: 700; }
+
+    /* ---------- Section head ---------- */
+    .section {
+      padding: 72px 0;
+    }
+    .section-alt { background: var(--paper); }
+    .section-head {
+      max-width: 640px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: var(--fs-2xl);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+    .section-lede {
+      font-size: var(--fs-lg);
+      color: var(--ink-2);
+      margin: 0;
+    }
+
+    /* ---------- Feature grid ---------- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .feature-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+
+    .feature {
+      padding: 28px 24px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(400px 120px at 100% 0%, rgba(201, 169, 97, 0.08), transparent 60%);
+      opacity: 0;
+      transition: opacity 300ms ease;
+      pointer-events: none;
+    }
+    .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(201, 169, 97, 0.4);
+    }
+    .feature:hover::after { opacity: 1; }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(201, 169, 97, 0.16), rgba(201, 169, 97, 0.04));
+      display: grid; place-items: center;
+      color: var(--gold-2);
+      margin-bottom: 18px;
+    }
+    .feature h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+    .feature p {
+      margin: 0;
+      font-size: var(--fs-sm);
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+
+    /* ---------- Verse spotlight ---------- */
+    .verse {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 44px 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      position: relative;
+    }
+    .verse::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 24px; right: 24px;
+      height: 3px;
+      background: var(--gold-grad);
+      border-radius: 3px;
+    }
+    .verse-ar {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      unicode-bidi: isolate;
+      font-size: clamp(24px, 3.5vw + 8px, 32px);
+      line-height: 1.9;
+      color: var(--ink);
+    }
+    .verse-en {
+      margin-top: 20px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: var(--fs-lg);
+      color: var(--ink-2);
+      line-height: 1.55;
+    }
+    .verse-ref {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+    }
+
+    /* ---------- Content grid (articles / links) ---------- */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    @media (min-width: 720px) { .content-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .content-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .card-cover {
+      aspect-ratio: 16 / 10;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(201, 169, 97, 0.35), transparent 55%),
+        linear-gradient(135deg, #efeadd 0%, #e2d7bd 100%);
+      position: relative;
+    }
+    .card-cover span {
+      position: absolute;
+      inset: auto 16px 16px auto;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+    }
+    .card-body { padding: 22px; }
+    .card-body h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+    .card-body p {
+      margin: 0 0 16px;
+      font-size: var(--fs-sm);
+      color: var(--ink-2);
+    }
+    .card-body a {
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      color: var(--gold-2);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .card-body a::after {
+      content: '→';
+      transition: transform 200ms ease;
+    }
+    .card-body a:hover::after { transform: translateX(3px); }
+
+    /* ---------- CTA banner ---------- */
+    .banner {
+      background: linear-gradient(180deg, var(--white), var(--paper));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 44px 28px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+    .banner h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: var(--fs-2xl);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+    }
+    .banner p {
+      max-width: 560px;
+      margin: 0 auto 24px;
+      color: var(--ink-2);
+      font-size: var(--fs-lg);
+    }
+    .banner-ctas { display: inline-flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      padding: 48px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 720px) {
+      .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; }
+    }
+    .footer-brand p {
+      margin: 12px 0 0;
+      color: var(--ink-2);
+      font-size: var(--fs-sm);
+      max-width: 320px;
+    }
+    .footer-col h5 {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 0 0 14px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: var(--fs-sm);
+      color: var(--ink-2);
+      padding: 6px 0;
+      transition: color 160ms ease;
+    }
+    .footer-col a:hover { color: var(--gold-2); }
+    .footer-base {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: var(--fs-xs);
+      color: var(--ink-3);
+    }
+
+    /* ---------- Motion respect ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ---------- Reveal-on-scroll ---------- */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 600ms ease, transform 600ms ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <nav class="topnav">
-    <a href="/" class="topnav-brand">
-      <img src="logo.png" alt="iTafakkur">
-      <span>iTafakkur</span>
-    </a>
-    <div class="topnav-links">
-      <a href="/privacy.html">Privacy</a>
-      <a href="/support.html">Support</a>
-      <a href="mailto:support@itafakkur.com">Contact</a>
-    </div>
-  </nav>
+  <!-- Subtle Islamic geometric pattern (behind all content, 45% opacity) -->
+  <div class="art-bg" aria-hidden="true"></div>
 
-  <main class="container">
-    <div class="ornament"><span class="ornament-dot"></span></div>
+  <!-- =========================================================
+       NAVIGATION
+       ========================================================= -->
+  <header class="nav" role="banner">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand" aria-label="iTafakkur home">
+        <img class="brand-mark" src="logo.png" alt="" aria-hidden="true" width="36" height="36" />
+        <span>iTafakkur</span>
+      </a>
 
-    <div class="mark">
-      <img src="logo.png" alt="iTafakkur logo">
-    </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#dashboard">Today</a>
+        <a href="#features">Features</a>
+        <a href="#verse">Reflect</a>
+        <a href="#library">Library</a>
+      </nav>
 
-    <h1>iTafakkur</h1>
-    <p class="tagline">Prayer. Reflection. Guidance.</p>
-
-    <p class="description">
-      A thoughtfully designed Islamic companion for your daily journey.
-      <strong>iTafakkur</strong> brings together accurate prayer times, Quran study with translations,
-      the 99 Names of Allah, dhikr and tasbeeh, Qibla direction, and a thoughtful AI guidance chat —
-      all in one peaceful, ad-free space.
-    </p>
-
-    <div class="features">
-      <span class="feature-pill">Prayer Times</span>
-      <span class="feature-pill">Tasbeeh</span>
-      <span class="feature-pill">99 Names of Allah</span>
-      <span class="feature-pill">Quran Study</span>
-      <span class="feature-pill">Qibla</span>
-      <span class="feature-pill">AI Guidance</span>
-    </div>
-
-    <div class="coming-soon">
-      <span class="coming-soon-label">Available Now</span>
-      <h2>Now on iOS and Android</h2>
-      <p>iTafakkur is free, ad-light, and built with care for the global Muslim ummah. Tap a button to install.</p>
-      <div class="stores">
-        <a
-          class="store-badge store-badge--live"
-          href="https://apps.apple.com/app/id6766188629"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Download iTafakkur on the App Store"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-          </svg>
-          Download on the App Store
+      <div style="display:inline-flex; gap:10px; align-items:center;">
+        <a href="#get" class="nav-cta" aria-label="Get iTafakkur">
+          Get the app
         </a>
-        <a
-          class="store-badge store-badge--live"
-          href="https://play.google.com/store/apps/details?id=net.quranchat.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Get iTafakkur on Google Play"
-        >
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734c0-.39.22-.72.61-.92zm10.89 10.893 2.302 2.302-10.937 6.333 8.635-8.635zM21 12.001a1.25 1.25 0 0 1-.6 1.05l-2.991 1.736-2.561-2.787 2.562-2.786 2.99 1.737c.379.21.6.59.6 1.05zm-15.039-9.85 10.937 6.333-2.302 2.302L5.96 2.149z"/>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
           </svg>
-          Get it on Google Play
-        </a>
+        </button>
       </div>
     </div>
-
-
-    <section class="translators" aria-labelledby="translators-heading">
-      <h2 id="translators-heading">Translators</h2>
-      <p class="translators-intro">
-        Localization contributors who help bring iTafakkur to Muslims around the world.
-      </p>
-      <ul class="translator-list">
-        <li class="translator-item">
-          <span class="translator-name">Sister Zainatun Nasiroh</span>
-          <span class="translator-role">— Indonesian Translator</span>
-        </li>
-      </ul>
-    </section>
-
-    <div class="contact">
-      Questions or feedback?
-      <a href="mailto:support@itafakkur.com">support@itafakkur.com</a>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-links">
-      <a href="/privacy.html">Privacy Policy</a>
+    <nav id="drawer" class="drawer" aria-label="More">
+      <span class="drawer-label">Explore</span>
+      <a href="#dashboard">Today</a>
+      <a href="#features">Features</a>
+      <a href="#verse">Reflect</a>
+      <a href="#library">Library</a>
+      <div class="drawer-divider" role="separator"></div>
+      <span class="drawer-label">Help</span>
       <a href="/support.html">Support</a>
       <a href="mailto:support@itafakkur.com">Contact</a>
-    </div>
-    <div class="footer-meta">
-      &copy; 2026 iTafakkur · An eDrop product
+      <div class="drawer-divider" role="separator"></div>
+      <span class="drawer-label">Legal</span>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms">Terms of Use</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+    <section class="hero">
+      <div class="wrap">
+        <span class="hero-eyebrow reveal"><span class="dot" aria-hidden="true"></span> Now available worldwide</span>
+
+        <h1 class="reveal">A serene home for your <span class="accent">daily worship</span>.</h1>
+        <p class="hero-ar reveal" lang="ar">﴿ اَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</p>
+        <p class="hero-desc reveal">
+          Prayer times, the Quran, dhikr, reflection, and gentle guidance — beautifully unified in one calm space.
+          Designed for Muslims around the world, on the device you carry every day.
+        </p>
+
+        <div class="hero-ctas reveal">
+          <a class="btn btn-primary" href="#get">
+            Get the app
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
+          <a class="btn btn-secondary" href="#features">Explore features</a>
+        </div>
+
+        <div class="trust reveal">
+          <span class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>
+            </svg>
+            Ad-free forever
+          </span>
+          <span class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/>
+            </svg>
+            4.9 · loved by users
+          </span>
+          <span class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Private &amp; secure
+          </span>
+        </div>
+
+        <!-- ===== 3 showcase boxes: Prayer Times · Calendar · Daily Wisdom ===== -->
+        <div class="showcase" aria-label="Featured capabilities">
+
+          <!-- 1. Prayer Timings -->
+          <article class="show-card reveal" aria-labelledby="show1-title">
+            <div class="show-head">
+              <div class="show-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </div>
+              <div class="show-title" id="show1-title">Prayer Timings</div>
+            </div>
+            <p class="show-sub">All five daily prayers, precisely calculated for your exact location — updated automatically as you travel.</p>
+            <ul class="prayer-list" aria-label="Today's prayer times">
+              <li class="prayer-row"><span class="p-name">Fajr</span><span class="p-time">5:14 AM</span></li>
+              <li class="prayer-row"><span class="p-name">Dhuhr</span><span class="p-time">12:38 PM</span></li>
+              <li class="prayer-row active"><span class="p-name">Asr</span><span class="p-time">3:48 PM</span></li>
+              <li class="prayer-row"><span class="p-name">Maghrib</span><span class="p-time">6:52 PM</span></li>
+              <li class="prayer-row"><span class="p-name">Isha</span><span class="p-time">8:14 PM</span></li>
+            </ul>
+          </article>
+
+          <!-- 2. Dual Calendar -->
+          <article class="show-card reveal" aria-labelledby="show2-title">
+            <div class="show-head">
+              <div class="show-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <div class="show-title" id="show2-title">Dual-Date Calendar</div>
+            </div>
+            <p class="show-sub">Gregorian alongside Hijri, month-at-a-glance — just like in the app.</p>
+
+            <div class="cal-month-head">
+              <div class="cal-month-title">
+                July 2026
+                <span class="h">Muharram – Safar 1448</span>
+              </div>
+              <div class="cal-nav" aria-hidden="true">
+                <button type="button" aria-label="Previous month">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button type="button" aria-label="Next month">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="cal-weekdays" aria-hidden="true">
+              <div class="cal-weekday">S</div>
+              <div class="cal-weekday">M</div>
+              <div class="cal-weekday">T</div>
+              <div class="cal-weekday">W</div>
+              <div class="cal-weekday">T</div>
+              <div class="cal-weekday">F</div>
+              <div class="cal-weekday">S</div>
+            </div>
+
+            <div class="cal-month" aria-label="July 2026 calendar">
+              <!-- Row 1 : Jun 28 – Jul 4 -->
+              <div class="cal-day dim"><span class="g">28</span><span class="h">13</span></div>
+              <div class="cal-day dim"><span class="g">29</span><span class="h">14</span></div>
+              <div class="cal-day dim"><span class="g">30</span><span class="h">15</span></div>
+              <div class="cal-day"><span class="g">1</span><span class="h">16</span></div>
+              <div class="cal-day"><span class="g">2</span><span class="h">17</span></div>
+              <div class="cal-day"><span class="g">3</span><span class="h">18</span></div>
+              <div class="cal-day"><span class="g">4</span><span class="h">19</span></div>
+
+              <!-- Row 2 : Jul 5 – 11 (Today = 7) -->
+              <div class="cal-day"><span class="g">5</span><span class="h">20</span></div>
+              <div class="cal-day"><span class="g">6</span><span class="h">21</span></div>
+              <div class="cal-day today" aria-label="Today, July 7"><span class="g">7</span><span class="h">22</span></div>
+              <div class="cal-day"><span class="g">8</span><span class="h">23</span></div>
+              <div class="cal-day"><span class="g">9</span><span class="h">24</span></div>
+              <div class="cal-day"><span class="g">10</span><span class="h">25</span></div>
+              <div class="cal-day"><span class="g">11</span><span class="h">26</span></div>
+
+              <!-- Row 3 : Jul 12 – 18 (Muharram ends, Safar begins) -->
+              <div class="cal-day"><span class="g">12</span><span class="h">27</span></div>
+              <div class="cal-day"><span class="g">13</span><span class="h">28</span></div>
+              <div class="cal-day"><span class="g">14</span><span class="h">29</span></div>
+              <div class="cal-day"><span class="g">15</span><span class="h">1</span></div>
+              <div class="cal-day"><span class="g">16</span><span class="h">2</span></div>
+              <div class="cal-day"><span class="g">17</span><span class="h">3</span></div>
+              <div class="cal-day"><span class="g">18</span><span class="h">4</span></div>
+
+              <!-- Row 4 : Jul 19 – 25 -->
+              <div class="cal-day"><span class="g">19</span><span class="h">5</span></div>
+              <div class="cal-day"><span class="g">20</span><span class="h">6</span></div>
+              <div class="cal-day"><span class="g">21</span><span class="h">7</span></div>
+              <div class="cal-day"><span class="g">22</span><span class="h">8</span></div>
+              <div class="cal-day"><span class="g">23</span><span class="h">9</span></div>
+              <div class="cal-day"><span class="g">24</span><span class="h">10</span></div>
+              <div class="cal-day"><span class="g">25</span><span class="h">11</span></div>
+
+              <!-- Row 5 : Jul 26 – Aug 1 -->
+              <div class="cal-day"><span class="g">26</span><span class="h">12</span></div>
+              <div class="cal-day"><span class="g">27</span><span class="h">13</span></div>
+              <div class="cal-day"><span class="g">28</span><span class="h">14</span></div>
+              <div class="cal-day"><span class="g">29</span><span class="h">15</span></div>
+              <div class="cal-day"><span class="g">30</span><span class="h">16</span></div>
+              <div class="cal-day"><span class="g">31</span><span class="h">17</span></div>
+              <div class="cal-day dim"><span class="g">1</span><span class="h">18</span></div>
+            </div>
+
+            <div class="cal-legend">
+              <span><span class="swatch g"></span>Gregorian</span>
+              <span><span class="swatch h"></span>Hijri</span>
+            </div>
+          </article>
+
+          <!-- 3. Daily Wisdom -->
+          <article class="show-card reveal" aria-labelledby="show3-title">
+            <div class="show-head">
+              <div class="show-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4z"/><path d="M20 4h-1a4 4 0 0 0-4 4v12"/></svg>
+              </div>
+              <div class="show-title" id="show3-title">Daily Wisdom</div>
+            </div>
+            <p class="show-sub">A verse, a hadith, and a reflection — every day, waiting for you.</p>
+            <div class="wisdom-tabs" role="tablist" aria-label="Today's wisdom">
+              <button class="wisdom-tab active" role="tab" aria-selected="true" data-target="verse">Verse</button>
+              <button class="wisdom-tab" role="tab" aria-selected="false" data-target="hadith">Hadith</button>
+              <button class="wisdom-tab" role="tab" aria-selected="false" data-target="reflection">Reflect</button>
+            </div>
+            <div class="wisdom-body" data-panel="verse">
+              <p class="wisdom-ar" lang="ar" dir="rtl">﴿ فَاذْكُرُونِي أَذْكُرْكُمْ ﴾</p>
+              <p class="wisdom-en">"So remember Me — I will remember you."</p>
+              <span class="wisdom-ref">Al-Baqarah · 2:152</span>
+            </div>
+            <div class="wisdom-body" data-panel="hadith" hidden>
+              <p class="wisdom-en">"The best among you are those who have the best manners and character."</p>
+              <span class="wisdom-ref">Sahih al-Bukhari · 3559</span>
+            </div>
+            <div class="wisdom-body" data-panel="reflection" hidden>
+              <p class="wisdom-en">"What is one small act of kindness you can offer today — for the sake of Allah alone, unseen by anyone else?"</p>
+              <span class="wisdom-ref">Today's reflection</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         QUICK ACTION DASHBOARD
+         ========================================================= -->
+    <section id="dashboard" class="dashboard">
+      <div class="wrap">
+        <div class="dashboard-grid" role="list">
+          <a class="qa" href="#" role="listitem" aria-label="Next prayer: Asr in 2 hours 14 minutes">
+            <div class="qa-head">
+              <span class="qa-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              </span>
+              <span class="qa-tag">Next prayer</span>
+            </div>
+            <div>
+              <div class="qa-title">Asr</div>
+              <div class="qa-value">In <strong>2h 14m</strong> · 3:48 PM</div>
+            </div>
+          </a>
+
+          <a class="qa" href="#" role="listitem" aria-label="Qibla direction">
+            <div class="qa-head">
+              <span class="qa-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 12 12 22 9 12 12 2"/></svg>
+              </span>
+              <span class="qa-tag">Qibla</span>
+            </div>
+            <div>
+              <div class="qa-title">Face the Kaaba</div>
+              <div class="qa-value"><strong>112°</strong> from north</div>
+            </div>
+          </a>
+
+          <a class="qa" href="#" role="listitem" aria-label="Continue reading Quran">
+            <div class="qa-head">
+              <span class="qa-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4z"/><path d="M20 4h-1a4 4 0 0 0-4 4v12"/></svg>
+              </span>
+              <span class="qa-tag">Continue</span>
+            </div>
+            <div>
+              <div class="qa-title">Al-Kahf</div>
+              <div class="qa-value">Ayah <strong>27 of 110</strong></div>
+            </div>
+          </a>
+
+          <a class="qa" href="#" role="listitem" aria-label="Today's dhikr count">
+            <div class="qa-head">
+              <span class="qa-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>
+              </span>
+              <span class="qa-tag">Dhikr today</span>
+            </div>
+            <div>
+              <div class="qa-title">Tasbih</div>
+              <div class="qa-value"><strong>168</strong> · streak 12 days</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         FEATURES
+         ========================================================= -->
+    <section id="features" class="section section-alt">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">Everything you need</span>
+          <h2 class="section-title">A complete companion — thoughtfully unified.</h2>
+          <p class="section-lede">One calm home for prayer, Quran, dhikr, and reflection. No ads. No noise.</p>
+        </header>
+
+        <div class="feature-grid">
+          <article class="feature reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h3>Prayer Times &amp; Adhan</h3>
+            <p>Accurate times for anywhere on earth with authentic Adhan voices and silent post-prayer nudges.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9a4 4 0 0 1 4 4v12H8a4 4 0 0 1-4-4z"/><path d="M20 4h-1a4 4 0 0 0-4 4v12"/></svg>
+            </div>
+            <h3>Full Quran Reader</h3>
+            <p>Elegant Mushaf typography, translations, tafsir, and verse-by-verse audio — with a bookmarkable last read.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 12 12 22 9 12 12 2"/></svg>
+            </div>
+            <h3>Qibla with AR Mode</h3>
+            <p>Live camera overlay finds the direction of the Kaaba precisely, wherever you happen to be standing.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <h3>Designed Tasbih</h3>
+            <p>A beautiful digital tasbih with morning &amp; evening adhkar, streaks, and gentle counters that persist.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l9 4 9-4-9 18-9-18z"/></svg>
+            </div>
+            <h3>Reflective AI Guidance</h3>
+            <p>A respectful companion for questions and reflection — grounded in Quran and authentic sources.</p>
+          </article>
+
+          <article class="feature reveal">
+            <div class="feature-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+            </div>
+            <h3>Journal &amp; Achievements</h3>
+            <p>Private daily journal with guided prompts, plus 22 milestones to celebrate consistency along your journey.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         VERSE SPOTLIGHT
+         ========================================================= -->
+    <section id="verse" class="section">
+      <div class="wrap">
+        <div class="verse reveal">
+          <p class="verse-ar" lang="ar" dir="rtl">﴿ إِنَّ مَعَ الْعُسْرِ يُسْرًا ﴾</p>
+          <p class="verse-en">"Indeed, with hardship comes ease."</p>
+          <span class="verse-ref">Surah Al-Inshirah · 94:6</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CONTENT / LIBRARY GRID
+         ========================================================= -->
+    <section id="library" class="section section-alt">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-eyebrow">Grow with knowledge</span>
+          <h2 class="section-title">Read, learn, reflect.</h2>
+          <p class="section-lede">Curated guides and Sunnah practices — quiet, credible, easy to return to.</p>
+        </header>
+
+        <div class="content-grid">
+          <article class="card reveal">
+            <div class="card-cover" role="img" aria-label="Illustration"><span>Guide</span></div>
+            <div class="card-body">
+              <h4>How to build a consistent prayer habit</h4>
+              <p>Small rituals, sound intentions, and the science of showing up daily — without burnout.</p>
+              <a href="#">Read the guide</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-cover" role="img" aria-label="Illustration"><span>Sunnah</span></div>
+            <div class="card-body">
+              <h4>Morning &amp; evening adhkar, explained</h4>
+              <p>The virtues, the timings, and a printable card so you always have it within reach.</p>
+              <a href="#">Open collection</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-cover" role="img" aria-label="Illustration"><span>Reflection</span></div>
+            <div class="card-body">
+              <h4>Reading Surah Al-Kahf on Fridays</h4>
+              <p>Why the tradition matters, what to focus on, and how to make it a weekly practice.</p>
+              <a href="#">Begin reading</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         MEET THE TRANSLATORS
+         ========================================================= -->
+    <section id="translators" class="translators-section" aria-labelledby="translators-heading">
+      <div class="wrap">
+        <div class="translators-card reveal">
+          <span class="translators-eyebrow">With gratitude</span>
+          <h2 class="translators-heading" id="translators-heading">Meet the Translators</h2>
+
+          <div class="translator-entry">
+            <div class="translator-role">UI Indonesian Translation</div>
+            <div class="translator-name">Sister Zainatun Nasiroh</div>
+          </div>
+
+          <p class="translators-dua">
+            <span class="translators-dua-ar" lang="ar" dir="rtl">جَزَاكِ اللَّهُ خَيْرًا</span>
+            May Allah reward you abundantly for your dedication to serving the ummah,
+            and may He accept it as a lasting sadaqah jariyah for you.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         GET THE APP BANNER
+         ========================================================= -->
+    <section id="get" class="section">
+      <div class="wrap">
+        <div class="banner reveal">
+          <h2>Bring calm to your daily practice.</h2>
+          <p>Available on iPhone and Android. Free to use. Ad-free forever.</p>
+          <div class="banner-ctas">
+            <a class="btn btn-primary" href="https://apps.apple.com/app/id6766188629" target="_blank" rel="noopener noreferrer" aria-label="Download iTafakkur on the App Store">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+              App Store
+            </a>
+            <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=net.quranchat.app" target="_blank" rel="noopener noreferrer" aria-label="Get iTafakkur on Google Play">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 1.8 13.8 12 3.6 22.2a1 1 0 0 1-.6-.9V2.7c0-.4.2-.7.6-.9zm10.9 10.9 2.3 2.3-10.9 6.3 8.6-8.6zM21 12a1.3 1.3 0 0 1-.6 1.1L17.4 14.8l-2.5-2.8 2.5-2.8 3 1.7c.4.2.6.6.6 1.1zM6 2.2l10.9 6.3-2.3 2.3L6 2.2z"/></svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer role="contentinfo">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <img class="brand-mark brand-mark-lg" src="logo.png" alt="" aria-hidden="true" width="44" height="44" />
+            <span>iTafakkur</span>
+          </div>
+          <p>A serene Islamic companion for prayer, Quran, and reflection — designed for Muslims around the world.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Product</h5>
+          <a href="#dashboard">Today</a>
+          <a href="#features">Features</a>
+          <a href="#library">Library</a>
+          <a href="#get">Get the app</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Support</h5>
+          <a href="/support.html">Help &amp; Support</a>
+          <a href="mailto:support@itafakkur.com">Contact us</a>
+          <a href="mailto:support@itafakkur.com?subject=iTafakkur%20feedback">Send feedback</a>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms">Terms of Use</a>
+        </div>
+      </div>
+
+      <div class="footer-base">
+        <span>&copy; 2026 iTafakkur · An eDrop product</span>
+        <span>Made with care · for the ummah, worldwide.</span>
+      </div>
     </div>
   </footer>
 
+  <script>
+    // ---------- Hamburger dropdown menu ----------
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var drawer = document.getElementById('drawer');
+      if (!toggle || !drawer) return;
+
+      function close() {
+        drawer.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+      function open() {
+        drawer.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        drawer.classList.contains('open') ? close() : open();
+      });
+
+      // Close when tapping a link
+      drawer.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', close);
+      });
+
+      // Close when tapping outside
+      document.addEventListener('click', function (e) {
+        if (!drawer.classList.contains('open')) return;
+        if (drawer.contains(e.target) || toggle.contains(e.target)) return;
+        close();
+      });
+
+      // Close on Escape key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) close();
+      });
+    })();
+
+    // ---------- Daily wisdom tab switcher ----------
+    (function () {
+      var tabs = document.querySelectorAll('.wisdom-tab');
+      if (!tabs.length) return;
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var card = tab.closest('.show-card');
+          if (!card) return;
+          var target = tab.getAttribute('data-target');
+          card.querySelectorAll('.wisdom-tab').forEach(function (t) {
+            var active = t === tab;
+            t.classList.toggle('active', active);
+            t.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          card.querySelectorAll('.wisdom-body').forEach(function (panel) {
+            panel.hidden = panel.getAttribute('data-panel') !== target;
+          });
+        });
+      });
+    })();
+
+    // ---------- Reveal-on-scroll (respects reduced motion) ----------
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
