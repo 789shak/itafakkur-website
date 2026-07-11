@@ -1,0 +1,24 @@
+# iTafakkur — Responsible disclosure policy
+# Per IETF RFC 9116 (https://www.rfc-editor.org/rfc/rfc9116).
+# Deploy this file to https://itafakkur.com/.well-known/security.txt
+
+Contact: mailto:support@itafakkur.com
+Expires: 2027-07-11T00:00:00.000Z
+Preferred-Languages: en, ar, ur, id
+Canonical: https://itafakkur.com/.well-known/security.txt
+Policy: https://itafakkur.com/privacy.html
+
+# If you discover a security vulnerability in iTafakkur, please:
+#   1. Email support@itafakkur.com with the subject: "Security Report"
+#   2. Include a clear description of the issue and, where safe,
+#      reproduction steps.
+#   3. Give us a reasonable window to remediate before public disclosure.
+#
+# We commit to acknowledging your report within 72 hours and
+# resolving critical issues within 7 days where feasible.
+#
+# We are a solo-maintained project and do not currently offer a paid
+# bug bounty, but we will publicly credit reporters (with consent) in
+# our release notes.
+#
+# — Syed Altaf Hussain, eDrop / iTafakkur
